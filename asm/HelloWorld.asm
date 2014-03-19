@@ -11,12 +11,13 @@ _start:
 	mov ebx, 0x1
 	mov ecx, message
 	mov edx, mlen
-	int 0x80
+  int 0x80
 
 	; exit the program gracefully
 	mov eax, 0x1
 	mov ebx, 0x5
-	int 0x80
+  int 0x80
+
 	
 section .data
 

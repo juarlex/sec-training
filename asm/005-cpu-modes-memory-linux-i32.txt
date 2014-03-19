@@ -1,0 +1,48 @@
+
+CPU mode and memory managment in Linux IA-32
+
+* Protected mode
+* Flat memory model
+
+
+
+     Kernel space
+-------------------------
+         Stack                <- Function args + local vars
+-------------------------
+ Shared libs + Mappings
+-------------------------
+         Heap                 <- Dynamic memory
+-------------------------
+         BSS                  <- Uninitialized data
+------------------------- 
+         Data                 <- Initialized data
+-------------------------
+         Text                 <- Program Code
+------------------------- 
+
+
+Tools to map the process of a program
+
+- Proc
+   $ cat /proc/<PID>/maps
+
+￼
+- pmaps
+  $ pmap <PID>
+
+- GDB
+  $ gdb /bin/bash
+  gdb>break main
+  gdb>run
+  gdb>info proc mappings
+
+  00153000-00154000     r-xp         00000000              00:00                 0          /bin/bash
+          ^                ^
+Start and End        Permisions in   Offset in file       Major - Minor         inode       file path
+Addresss of section  the section     for memory mapped    of number of device   number
+                     r = read        files. 0 otherwise   from where the
+                     w = write                            file was
+                     x = execution                        loaded
+                     p = private not shared
+                     s = shared

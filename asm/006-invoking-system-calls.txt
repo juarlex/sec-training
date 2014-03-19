@@ -1,0 +1,61 @@
+Where are defined the system calls in Linux?
+
+/usr/include/i386-linux-gnu/asm/uninstd_32.h
+
+int 0x80 <- thi is for  calling interrupt (in this case system_call)
+=========================================================================
+Invoking System Call with 0x80
+
+
+Example to call write
+=====================
+ssize_t write(int fd, const void *buf, size_t count);
+
+; print hello world on the screen
+mov eax, 0x4           <- System call number, Retun value in EAX
+mov ebx, 0x1i          <- 1st argument        ==================
+mov ecx,ebx message    <- 2nd argument
+mov edx, mlen          <- 3rd argument
+int 0x80
+
+esi <- 4th argument
+edi <- 5th argument
+
+Example to call exit
+====================
+
+void exit(status);
+; exit the program gracefully
+mov eax, 0x1           <- system call number
+mob ebx, 0x5           <- status code
+int 0x80
+
+
+Exploring the HelloWorld program in execution with GDB unde Linux
+============================================
+nasm -f elf32 -o HelloWorld.o HelloWorld.asm
+ld -o HelloWorld HelloWorld.o
+
+gdb ./HelloWorld
+break _start
+run
+
+disassemble
+
+set disassembly-flavor intel
+
+info registers
+stepi
+info registers
+stepi 
+info registers
+stepi
+info registers
+x /s 0x80490a4 <- print string at the specific memory address
+
+
+Exploring the HelloMach program with LLDB in Mach OS
+====================================================
+nasm -f macho HelloMach.asm
+ld  -o HelloMach -e _start HelloMach.o
+gdb ./HelloMach

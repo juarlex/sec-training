@@ -1,0 +1,10 @@
+General purpose registers
+================================
+eax <- Accumulator Register – used for storing operands and result data
+ebx <- Base Register – Pointer to Data
+ecx <- Counter Register – Loop operaSons
+edx <- Data Register – I/O Pointer
+esi/edi <- Data Pointer Registers for memory operations
+esp <- Stack Pointer Register
+ebp <- Stack Data Pointer Register
+
