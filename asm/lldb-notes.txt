@@ -1,0 +1,23 @@
+=== MacOS ====
+sysctl -A | grep -i cpu
+LLDB # How to check the flags (rflags)
+lldb /bin/zsh
+
+or 
+lldb
+$lldb file /bin/zsh
+breakpoint set -n main
+breakpoint set --name main
+
+run
+register read <- observe rip
+register read -a
+register read rax
+register read eax
+disassemble -s $rip <- observe
+disassemble -n main
+# References:
+http://debugging-with-lldb.blogspot.mx/2013/07/lldb-breakpoint-commands.html
+https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/gdb_to_lldb_transition_guide/document/lldb-terminal-workflow-tutorial.html
+
+

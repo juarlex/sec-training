@@ -1,0 +1,23 @@
+=== Linux ===
+How to check the cpu info in linux
+lscpu
+cat /proc/cpuinfo
+
+How to show the registers of a linux system
+
+It only can be used in the context of an execution of a program using
+GDB
+gdb /bin/bash
+break main
+run
+info registers
+info all-registers
+display /x $eax
+display /x $ax
+display /x $ah
+display /x $al
+disassemble $eip
+disassemble main
+info 
+set disassembly-flavor intel
+
