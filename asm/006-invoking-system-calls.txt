@@ -56,6 +56,16 @@ x /s 0x80490a4 <- print string at the specific memory address
 
 Exploring the HelloMach program with LLDB in Mach OS
 ====================================================
-nasm -f macho HelloMach.asm
-ld  -o HelloMach -e _start HelloMach.o
-gdb ./HelloMach
+lldb ./64
+
+$lldb> process launch --stop-at-entry
+disassemble
+thread step-inst
+register read
+thread step-inst
+register read
+thread step-inst
+register read
+thread step-inst
+register read
+
