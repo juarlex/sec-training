@@ -28,13 +28,16 @@ The -O0 option excludes any optimization in the code.
 What do the Symbol Files Tell Us ?
 ==================================
 
-clang -ggdb -o demo2 demo2.c
+clang -g -O0 -o demo2 demo2.c
 
 lldb ./program/demo2
 
 lldb> image list <- List current executable and dependent shared library images.
+
 lldb> target select 0 <- Select a target as the current target by target index.
+
 lldb> source list -l1 -c22 <- Show us the source code of the program
+
 lldb>image lookup -v -n func_name <- show us local variables in a function
  
 Ripping Symbols off a Binary
@@ -51,6 +54,7 @@ Using python to debug a function
 ================================
 
 lldb> breakpoint set --name "main"
+
 lldb> breakpoint command add --script-type python 1
 
 > thread = frame.GetThread()
